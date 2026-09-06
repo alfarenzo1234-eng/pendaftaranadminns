@@ -1,0 +1,59 @@
+<script>
+
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzNhE8MVnJXBnFIKneaK4m1IeN1-A5Ne_-8vKrtmmkQKKX2-GQnN_jWUwjzNqPL88/exec";
+
+document.getElementById("adminForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const form = event.target;
+
+    const data = {
+        nama: form.nama.value,
+        roblox: form.roblox.value,
+        robloxLink: form.robloxLink.value,
+        google: form.google.value,
+        umur: form.umur.value,
+        alasan: form.alasan.value,
+        nakal: form.nakal.value,
+        membantu: form.membantu.value,
+        bertengkar: form.bertengkar.value,
+        laporanAdmin: form.laporanAdmin.value,
+        temanMelanggar: form.temanMelanggar.value,
+        tugasAdmin: form.tugasAdmin.value,
+        setuju: form.setuju.value,
+        sopan: form.sopan.value
+    };
+
+    try {
+
+        const response = await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain"
+            },
+            body: JSON.stringify(data)
+        });
+
+        alert(
+            "✅ PENDAFTARAN TERKIRIM!\n\n" +
+            "Terima kasih sudah mendaftar sebagai Admin N.S.\n" +
+            "Silakan tunggu proses seleksi dari Staff."
+        );
+
+        form.reset();
+
+    } catch (error) {
+
+        alert(
+            "❌ Gagal mengirim pendaftaran.\n\n" +
+            "Silakan coba lagi."
+        );
+
+        console.error(error);
+    }
+
+});
+
+</script>
